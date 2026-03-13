@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Match Results</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .score {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 6px;
+            background: #f1f1f1;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .missing li {
+            background: #ffdddd;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Resume Job Match</h1>
+
+<div class="score">
+Match Score: {{ match_score }}%
+</div>
+
+<h3>Detected Resume Skills</h3>
+
+<ul>
+{% for skill in resume_skills %}
+<li>{{ skill }}</li>
+{% endfor %}
+</ul>
+
+
+<h3>Resume Improvement Suggestions</h3>
+
+<ul>
+{% for tip in suggestions %}
+<li>{{ tip }}</li>
+{% endfor %}
+</ul>
+
+
+</div>
+
+</body>
+</html>
