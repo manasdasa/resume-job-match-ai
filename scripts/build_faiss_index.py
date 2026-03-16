@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-df = pd.read_csv("data/all_jobs_dataset.csv")
+df = pd.read_csv("data/jobs_small.csv")
 
 texts = df["description"].tolist()
 

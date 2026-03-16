@@ -10,7 +10,7 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 index = faiss.read_index("models/jobs_faiss.index")
 
 # Load dataset
-jobs_df = pd.read_csv("data/all_jobs_dataset.csv")
+jobs_df = pd.read_csv("data/jobs_small.csv")
 
 # Clean missing values so "nan" never appears
 jobs_df["job_title"] = jobs_df["job_title"].fillna("Unknown Position")

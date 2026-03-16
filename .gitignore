@@ -5,7 +5,16 @@ __pycache__/
 .DS_Store
 .vscode/
 .venv
-data/
-models/
+# large raw datasets — too big for git
+data/all_jobs_dataset.csv
+data/postings.csv
+data/monster_com-job_sample.csv
+data/job_postings.csv
+data/job_postings_1.csv
+data/marketing_sample_for_trulia_com-real_estate__20190901_20191031__30k_data.csv
+
+# no large model artifacts to ignore — jobs_faiss.index at 15MB is safe to track
 datasets/
 sample_resume_v1.pdf
+inspect_dataset.py
+
