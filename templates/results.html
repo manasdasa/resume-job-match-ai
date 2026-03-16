@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Match Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 900px;
+            margin: auto;
+            padding-top: 80px;
+            padding-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #e2e8f0;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #6366f1;
+            border: none;
+            padding: 14px 24px;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: none;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .job-card {
+            background: #111827;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #374151;
+        }
+
+        .job-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .company {
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .score {
+            color: #60a5fa;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        .match-score-banner {
+            text-align: center;
+            font-size: 52px;
+            font-weight: 700;
+            color: #34d399;
+            margin-bottom: 8px;
+        }
+
+        .match-score-label {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pill-list li {
+            background: #334155;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            color: #e2e8f0;
+        }
+
+        .pill-list.missing li {
+            background: #450a0a;
+            color: #fca5a5;
+            border: 1px solid #7f1d1d;
+        }
+
+        .suggestion-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .suggestion-list li {
+            padding: 10px 14px;
+            background: #1e3a5f;
+            border-left: 3px solid #3b82f6;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #bfdbfe;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            background: #020617;
+            border-bottom: 1px solid #1f2937;
+            font-weight: 600;
+            font-size: 16px;
+            box-sizing: border-box;
+            z-index: 100;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #6366f1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #818cf8;
+        }
+    </style>
+</head>
+<body>
+
+<nav>Resume Match AI</nav>
+
+<div class="container">
+
+    <a class="back-link" href="/">← Analyze another resume</a>
+
+    <h1>Match Results</h1>
+
+    <!-- Match Score -->
+    <div class="card">
+        <div class="match-score-banner">{{ match_score }}%</div>
+        <div class="match-score-label">Resume Match Score</div>
+    </div>
+
+    <!-- Detected Resume Skills -->
+    <div class="card">
+        <h2>Skills Found in Resume</h2>
+        <ul class="pill-list">
+            {% for skill in resume_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Missing Skills -->
+    <div class="card">
+        <h2>Missing Skills</h2>
+        <ul class="pill-list missing">
+            {% for skill in missing_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Resume Improvement Suggestions -->
+    <div class="card">
+        <h2>Resume Improvement Suggestions</h2>
+        <ul class="suggestion-list">
+            {% for tip in suggestions %}
+            <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Recommended Jobs -->
+    <div class="card">
+        <h2>Recommended Jobs</h2>
+
+        {% for job in jobs %}
+        <div class="job-card">
+            <div class="job-title">{{ job.title }}</div>
+            <div class="company">{{ job.company }} — {{ job.location }}</div>
+            <div class="score">Match Score: {{ job.score }}</div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
